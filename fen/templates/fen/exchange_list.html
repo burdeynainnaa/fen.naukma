@@ -1,0 +1,25 @@
+{% extends 'fen/base.html' %}
+
+{% block content %}
+<h2>Програми академічного обміну</h2>
+<div style="margin-top: 20px;">
+    {% for p in programs %}
+        <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
+            <h3>{{ p.university }}, {{ p.country }}</h3>
+            <p><strong>Мови навчання:</strong> {{ p.languages }}</p>
+            <p><strong>Кількість місць:</strong> {{ p.slots }}</p>
+            <p><strong>Дедлайн подачі:</strong> {{ p.deadline|date:"d.m.Y" }}</p>
+            <p><strong>Статус:</strong> 
+                {% if p.is_active %}
+                    <span style="color: green; font-weight: bold;">Прийом триває</span>
+                {% else %}
+                    <span style="color: red; font-weight: bold;">Прийом завершено</span>
+                {% endif %}
+            </p>
+            <p><strong>Опис:</strong> {{ p.description }}</p>
+        </div>
+    {% empty %}
+        <p>Наразі немає доступних програм обміну.</p>
+    {% endfor %}
+</div>
+{% endblock %}

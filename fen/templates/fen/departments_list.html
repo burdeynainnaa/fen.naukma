@@ -1,0 +1,28 @@
+{% extends 'fen/base.html' %}
+
+{% block content %}
+    <h2>Кафедри факультету</h2>
+    <hr style="margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
+
+    {% for department in departments %}
+        <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+            <h3>
+                <a href="{% url 'department_detail' department.pk %}" style="color: #003366; text-decoration: none;">
+                    {{ department.name }}
+                </a>
+            </h3>
+            <p><strong>Завідувач кафедри:</strong> {{ department.head }}</p>
+            
+            <p><strong>Випускові спеціальності:</strong></p>
+            <ul>
+                {% for prog in department.programs.all %}
+                    <li><a href="{% url 'program_detail' prog.pk %}">{{ prog.name }}</a></li>
+                {% empty %}
+                    <li>Немає спеціальностей</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% empty %}
+        <p>Кафедри поки не додано.</p>
+    {% endfor %}
+{% endblock %}

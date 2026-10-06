@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Факультет економічних наук (ФЕН) НаУКМА</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ФЕН НаУКМА</h1>
+        <nav>
+            <a href="{% url 'home' %}">Головна</a>
+            <a href="{% url 'departments_list' %}">Кафедри</a>
+            <a href="{% url 'programs_list' %}">Спеціальності</a>
+            <a href="{% url 'exchange_list' %}">Програми обміну</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Факультет економічних наук, НаУКМА</p>
+        <a href="{% url 'admin:index' %}">адмін-панель</a>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'fen/base.html' %}
+
+{% block content %}
+    <h2>{{ program.name }}</h2>
+    <p><strong>Код спеціальності:</strong> {{ program.code }}</p>
+    <p><strong>Випускова кафедра:</strong> <a href="{% url 'department_detail' program.department.pk %}">{{ program.department.name }}</a></p>
+    
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+    
+    <h3>Повний опис</h3>
+    <div style="line-height: 1.6;">{{ program.description|linebreaks }}</div>
+
+    <h3 style="margin-top: 30px;">Список дисциплін</h3>
+    <div style="line-height: 1.6;">{{ program.disciplines|linebreaks }}</div>
+
+    <h3 style="margin-top: 30px;">Координатор набору</h3>
+    <p><strong>Ім'я:</strong> {{ program.coordinator_name }}</p>
+    <p><strong>Контакт:</strong> {{ program.coordinator_contact }}</p>
+
+    <p style="margin-top: 30px;">
+        <a href="{% url 'programs_list' %}" style="color: #003366; text-decoration: none;">&larr; Назад до списку спеціальностей</a>
+    </p>
+{% endblock %}
