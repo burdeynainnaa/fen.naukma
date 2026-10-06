@@ -1,0 +1,16 @@
+{% extends 'fen/base.html' %}
+
+{% block content %}
+    {% if content %}
+        <h2>{{ content.title }}</h2>
+        <div style="margin-top: 20px; line-height: 1.6;">
+            {{ content.description|linebreaks }}
+        </div>
+        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+        <h3>Контакти</h3>
+        <p>{{ content.contacts|linebreaks }}</p>
+    {% else %}
+        <h2>Факультет економічних наук (ФЕН) НаУКМА</h2>
+        <p>Будь ласка, додайте контент головної сторінки через адміністративну панель.</p>
+    {% endif %}
+{% endblock %}

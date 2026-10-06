@@ -1,0 +1,21 @@
+{% extends 'fen/base.html' %}
+
+{% block content %}
+    <h2>Спеціальності факультету</h2>
+    <hr style="margin-bottom: 20px; border: 0; border-top: 1px solid #eee;">
+
+    {% for program in programs %}
+        <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+            <h3>
+                <a href="{% url 'program_detail' program.pk %}" style="color: #003366; text-decoration: none;">
+                    {{ program.name }} (Код: {{ program.code }})
+                </a>
+            </h3>
+            <p><strong>Опис:</strong> {{ program.description|truncatewords:50 }}</p>
+            <p><strong>Координатор набору:</strong> {{ program.coordinator_name }} (Контакт: {{ program.coordinator_contact }})</p>
+            <p><strong>Випускова кафедра:</strong> {{ program.department.name }}</p>
+        </div>
+    {% empty %}
+        <p>Спеціальності поки не додано.</p>
+    {% endfor %}
+{% endblock %}

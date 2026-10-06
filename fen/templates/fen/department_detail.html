@@ -1,0 +1,28 @@
+{% extends 'fen/base.html' %}
+
+{% block content %}
+    <h2>{{ department.name }}</h2>
+    <p><strong>Завідувач кафедри:</strong> {{ department.head }}</p>
+
+    <h3 style="margin-top: 30px;">Випускові спеціальності</h3>
+    <ul>
+        {% for program in programs %}
+            <li><a href="{% url 'program_detail' program.pk %}">{{ program.name }} (Код: {{ program.code }})</a></li>
+        {% empty %}
+            <li>Для цієї кафедри поки немає випускових спеціальностей.</li>
+        {% endfor %}
+    </ul>
+
+    <h3 style="margin-top: 30px;">Викладацький склад</h3>
+    <ul>
+        {% for teacher in teachers %}
+            <li><strong>{{ teacher.name }}</strong> — {{ teacher.position }}, {{ teacher.degree }}</li>
+        {% empty %}
+            <li>Викладачів поки не додано.</li>
+        {% endfor %}
+    </ul>
+
+    <p style="margin-top: 30px;">
+        <a href="{% url 'departments_list' %}" style="color: #003366; text-decoration: none;">&larr; Назад до списку кафедр</a>
+    </p>
+{% endblock %}
